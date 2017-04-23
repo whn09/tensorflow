@@ -3693,129 +3693,10 @@ tf_cuda_cc_test(
 )
 
 cc_library(
-    name = "mfcc_dct",
-    srcs = ["mfcc_dct.cc"],
-    hdrs = ["mfcc_dct.h"],
-    copts = tf_copts(),
-    deps = [
-        "//tensorflow/core:framework",
-        "//tensorflow/core:lib",
-    ],
-)
-
-tf_cc_test(
-    name = "mfcc_dct_test",
-    size = "small",
-    srcs = ["mfcc_dct_test.cc"],
-    deps = [
-        ":mfcc_dct",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:lib_internal",
-        "//tensorflow/core:lib_test_internal",
-        "//tensorflow/core:protos_all_cc",
-        "//tensorflow/core:test",
-        "//tensorflow/core:test_main",
-        "//third_party/eigen3",
-    ],
-)
-
-cc_library(
-    name = "mfcc_mel_filterbank",
-    srcs = ["mfcc_mel_filterbank.cc"],
-    hdrs = ["mfcc_mel_filterbank.h"],
-    copts = tf_copts(),
-    deps = [
-        "//tensorflow/core:framework",
-        "//tensorflow/core:lib",
-    ],
-)
-
-tf_cc_test(
-    name = "mfcc_mel_filterbank_test",
-    size = "small",
-    srcs = ["mfcc_mel_filterbank_test.cc"],
-    deps = [
-        ":mfcc_mel_filterbank",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:lib_internal",
-        "//tensorflow/core:lib_test_internal",
-        "//tensorflow/core:protos_all_cc",
-        "//tensorflow/core:test",
-        "//tensorflow/core:test_main",
-        "//third_party/eigen3",
-    ],
-)
-
-cc_library(
-    name = "mfcc",
-    srcs = ["mfcc.cc"],
-    hdrs = ["mfcc.h"],
-    copts = tf_copts(),
-    deps = [
-        ":mfcc_dct",
-        ":mfcc_mel_filterbank",
-        "//tensorflow/core:framework",
-        "//tensorflow/core:lib",
-    ],
-)
-
-tf_cc_test(
-    name = "mfcc_test",
-    size = "small",
-    srcs = ["mfcc_test.cc"],
-    deps = [
-        ":mfcc",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:lib_internal",
-        "//tensorflow/core:lib_test_internal",
-        "//tensorflow/core:protos_all_cc",
-        "//tensorflow/core:test",
-        "//tensorflow/core:test_main",
-        "//third_party/eigen3",
-    ],
-)
-
-tf_kernel_library(
-    name = "mfcc_op",
-    prefix = "mfcc_op",
-    deps = [
-        ":mfcc",
-        "//tensorflow/core:audio_ops_op_lib",
-        "//tensorflow/core:core_cpu",
-        "//tensorflow/core:framework",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:lib_internal",
-    ],
-    alwayslink = 1,
-)
-
-tf_cuda_cc_test(
-    name = "mfcc_op_test",
-    size = "small",
-    srcs = ["mfcc_op_test.cc"],
-    deps = [
-        ":mfcc_op",
-        ":ops_util",
-        "//tensorflow/cc:cc_ops",
-        "//tensorflow/cc:client_session",
-        "//tensorflow/core:core_cpu",
-        "//tensorflow/core:framework",
-        "//tensorflow/core:framework_internal",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:protos_all_cc",
-        "//tensorflow/core:tensorflow",
-        "//tensorflow/core:test",
-        "//tensorflow/core:test_main",
-        "//tensorflow/core:testlib",
-    ],
-)
-
-cc_library(
     name = "audio",
     deps = [
         ":decode_wav_op",
         ":encode_wav_op",
-        ":mfcc_op",
         ":spectrogram_op",
     ],
 )
@@ -4039,6 +3920,7 @@ filegroup(
         "cwise_op_abs.cc",
         "cwise_op_add_1.cc",
         "cwise_op_add_2.cc",
+	"cwise_op_ceil.cc", # added by whn09
         "cwise_op_div.cc",
         "cwise_op_equal_to_1.cc",
         "cwise_op_equal_to_2.cc",

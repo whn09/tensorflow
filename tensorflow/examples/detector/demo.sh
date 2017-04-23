@@ -1,0 +1,12 @@
+#!/bin/bash
+#./bazel-bin/tensorflow/examples/detector/detector --eval_list /home/chaolan/debug/test.list --img_width 640 --img_height 384 --conf 0 --region_size 16 --num_boxes 5 --output /home/chaolan/debug/test.cpp.result --graph /home/chaolan/models/3_class/frozen_ucar_3_class_slim_inceptionv2_r1_lstm_640x384_2016_11_08_2016_11_08_17.21_200000.pb --num_classes 4 --gpu 0
+
+#./bazel-bin/tensorflow/examples/detector/detector --eval_list /home/xpli/data/xpli/code/cafferoot/caffe_partiallabel/data/ucar/video_list.txt --img_width 640 --img_height 384 --conf 0 --region_size 16 --num_boxes 5 --output /home/xpli/data/xpli/code/tf-projects/tensorflow/tmp --graph /home/xpli/data/xpli/code/tf-projects/tensorflow/models/frozen_ucar_3_class_slim_inceptionv2_balanced_sample_640x384_2016_11_09_2016_11_13_23.55_700000.pb --num_classes 4 --gpu 0
+
+#./bazel-bin/tensorflow/examples/detector/detector --eval_list /home/xpli/data/xpli/code/cafferoot/caffe_partiallabel/data/ucar/video_list.txt --img_width 640 --img_height 384 --conf 0 --region_size 16 --num_boxes 5 --output /home/xpli/data/xpli/code/tf-projects/tensorflow/tmp --graph /home/xpli/data/xpli/code/tf-projects/tensorflow/models/frozen_ucar_3_class_slim_inceptionv2_balanced_sample_640x384_2016_11_09_2016_11_13_23.55_700000.pb --num_classes 4 --gpu 0
+
+#./bazel-bin/tensorflow/examples/detector/detector --video="/home/xpli/data/xpli/data/demo_videos/63bf1ef04884762c_1476673254702.mp4" --img_width=640 --img_height=384 --conf=0 --region_size=16 --num_boxes=5 --output="/home/xpli/data/xpli/code/tf-projects/tensorflow/tmp" --graph="/home/xpli/data/xpli/code/tf-projects/tensorflow/models/frozen_ucar_3_class_slim_inceptionv2_balanced_sample_640x384_2016_11_09_2016_11_13_23.55_700000.pb" --num_classes=4 --gpu=0
+
+#./bazel-bin/tensorflow/examples/detector/detector_writevideo --video="/home/xpli/data/xpli/data/demo_videos/63bf1ef04884762c_1476673254702.mp4" --img_width=640 --img_height=384 --conf=0 --region_size=16 --num_boxes=5 --output="/home/xpli/data/xpli/code/tf-projects/tensorflow/tmp" --graph="/home/xpli/data/xpli/code/tf-projects/tensorflow/models/frozen_ucar_3_class_slim_inceptionv2_balanced_sample_640x384_2016_11_09_2016_11_13_23.55_700000.pb" --num_classes=4 --gpu=0 --dump_result=1 
+
+./bazel-bin/tensorflow/examples/detector/detector_writevideo --video="/home/ubuntu/bankcard/WechatIMG1_640x480.jpg" --img_width=640 --img_height=480 --conf=0 --region_size=32 --num_boxes=5 --output="/home/ubuntu/bankcard/" --graph="/home/ubuntu/bankcard/bankcard.pb" --num_classes=11 --gpu=0 --dump=true
