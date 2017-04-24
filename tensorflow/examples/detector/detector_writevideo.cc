@@ -83,7 +83,8 @@ Status load_graph(string graph_file_name, int gpu_id,
   // options.config.set_allow_soft_placement(true);
   session->reset(tensorflow::NewSession(options));
   std::ostringstream oss;
-  oss << "/gpu:" << gpu_id;
+//  oss << "/gpu:" << gpu_id;
+  oss << "/cpu:" << gpu_id;
   tensorflow::graph::SetDefaultDevice(oss.str(), &graph_def);
   Status session_create_status = (*session)->Create(graph_def);
   if (!session_create_status.ok()) {
@@ -171,7 +172,8 @@ int test_video(const Args &args,
     const string out_path =
         args.output.empty() ? "/tmp/result.mp4" : args.output;
     //change ex to CV_FOURCC('F','L','V','1')
-    outputVideo.open(out_path, CV_FOURCC('F','L','V','1'), inputVideo.get(CV_CAP_PROP_FPS),
+//    outputVideo.open(out_path, CV_FOURCC('F','L','V','1'), inputVideo.get(CV_CAP_PROP_FPS),
+    outputVideo.open(out_path, CV_FOURCC('A','V','C','1'), inputVideo.get(CV_CAP_PROP_FPS),
                      Size(args.img_width, args.img_height), true);
     if (!outputVideo.isOpened()) {
       LOG(ERROR) << "Can't open video " << out_path;
