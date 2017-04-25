@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <iostream>
 
-#include "tensorflow/core/framework/tensor.h"
+/*#include "tensorflow/core/framework/tensor.h"
 #include "tensorflow/core/graph/default_device.h"
 #include "tensorflow/core/graph/graph_def_builder.h"
 #include "tensorflow/core/lib/core/errors.h"
@@ -36,6 +36,7 @@ using namespace cv;
 
 using Clock = std::chrono::high_resolution_clock;
 using TimePoint = std::chrono::high_resolution_clock::time_point;
+*/
 
 #define TENSORBOXDETECTOR_METHOD(METHOD_NAME) \
   Java_com_ucarinc_adas_android_TensorboxDetector_##METHOD_NAME  // NOLINT
@@ -57,7 +58,7 @@ TENSORBOXDETECTOR_METHOD(test_image)(
     JNIEnv* env, jclass clazz, jint input, jint output) {
         output = input+1;
     }
-
+/*
 // -------------------------------------------------------------------------
 struct Args {
   bool show_img = true;
@@ -461,19 +462,6 @@ int test_images(const Args &args,
 // -------------------------------------------------------------------------
 int main(int argc, char *argv[]) {
   Args args;
-  /*
-  
-  string graph = "/home/xpli/data/xpli/code/tf-projects/tensorflow/models/frozen_ucar_3_class_slim_inceptionv2_balanced_sample_640x384_2016_11_09_2016_11_13_23.55_700000.pb";
-  int32 num_classes = 4;  
-  string output = "/home/xpli/data/xpli/code/tf-projects/tensorflow/tmp";
-  int32 num_boxes = 5;
-  int32 region_size = 16;
-  float conf = 0;
-  int32 img_height = 384;
-  int32 img_weidth = 640;
-  string eval_list = "/home/xpli/data/xpli/code/cafferoot/caffe_partiallabel/data/ucar/video_list.txt";
-  int gpu= 0;
-  */
   
   std::vector<Flag> flag_list = {
   	Flag("video", &args.video_path, "video path"),
@@ -542,4 +530,4 @@ int main(int argc, char *argv[]) {
 
   LOG(ERROR) << "Invalid video_path or eval_list.";
   return -1;
-}
+}*/

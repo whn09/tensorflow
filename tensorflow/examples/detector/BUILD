@@ -66,6 +66,34 @@ exports_files([
 ])
 
 cc_binary(
+    name = "libtensorbox_detector_lite.so",
+    srcs = [
+        "tensorbox_detector.cc",
+    ],
+    copts = tf_copts(),
+    linkopts = [
+      "-fopenmp",
+      "-landroid",
+      "-ljnigraphics",
+      "-llog",
+      "-lm",
+      "-z defs",
+      "-s",
+      "-Wl,--version-script",  # This line must be directly followed by LINKER_SCRIPT.
+      LINKER_SCRIPT,
+    ],
+    linkshared = 1,
+    linkstatic = 1,
+    tags = [
+        "manual",
+        "notap",
+    ],
+    deps = [
+        LINKER_SCRIPT,
+    ],
+)
+
+cc_binary(
     name = "libtensorbox_detector.so",
     srcs = [
         "tensorbox_detector.cc",
