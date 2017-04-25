@@ -54,10 +54,16 @@ cc_binary(
 )
 
 load(
+    "//tensorflow:tensorflow.bzl",
     "tf_copts",
+    "if_android",
 )
 
 LINKER_SCRIPT = "//tensorflow/contrib/android:jni/version_script.lds"
+
+exports_files([
+    "jni/version_script.lds",
+])
 
 cc_binary(
     name = "libtensorbox_detector.so",
@@ -93,6 +99,7 @@ cc_binary(
         "@boost_archive//:boost",
         "@boost_archive//:filesystem",
         "@boost_archive//:property_tree",
+        "//tensorflow/core:android_tensorflow_lib",
         LINKER_SCRIPT,
     ],
 )
