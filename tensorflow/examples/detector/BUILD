@@ -53,6 +53,8 @@ cc_binary(
     ],
 )
 
+LINKER_SCRIPT = "//tensorflow/contrib/android:jni/version_script.lds"
+
 cc_binary(
     name = "libtensorbox_detector.so",
     srcs = [
@@ -62,9 +64,23 @@ cc_binary(
         "stitch_rects.h",
         "stitch_rects.cc",
     ],
+    copts = tf_copts(),
     linkopts = [
       "-fopenmp",
+      "-landroid",
+      "-ljnigraphics",
+      "-llog",
       "-lm",
+      "-z defs",
+      "-s",
+      "-Wl,--version-script",  # This line must be directly followed by LINKER_SCRIPT.
+      LINKER_SCRIPT,
+    ],
+    linkshared = 1,
+    linkstatic = 1,
+    tags = [
+        "manual",
+        "notap",
     ],
     deps = [
         "//tensorflow/core:framework_internal",
@@ -73,6 +89,7 @@ cc_binary(
         "@boost_archive//:boost",
         "@boost_archive//:filesystem",
         "@boost_archive//:property_tree",
+        LINKER_SCRIPT,
     ],
 )
 
