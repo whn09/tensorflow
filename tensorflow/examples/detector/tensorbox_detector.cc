@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <iostream>
 
-/*#include "tensorflow/core/framework/tensor.h"
+#include "tensorflow/core/framework/tensor.h"
 #include "tensorflow/core/graph/default_device.h"
 #include "tensorflow/core/graph/graph_def_builder.h"
 #include "tensorflow/core/lib/core/errors.h"
@@ -36,7 +36,6 @@ using namespace cv;
 
 using Clock = std::chrono::high_resolution_clock;
 using TimePoint = std::chrono::high_resolution_clock::time_point;
-*/
 
 #define TENSORBOXDETECTOR_METHOD(METHOD_NAME) \
   Java_com_ucarinc_adas_android_TensorboxDetector_##METHOD_NAME  // NOLINT
@@ -58,7 +57,7 @@ TENSORBOXDETECTOR_METHOD(testImage)(
     JNIEnv* env, jclass clazz, jint input) {
         return input+1;
     }
-/*
+
 // -------------------------------------------------------------------------
 struct Args {
   bool show_img = true;
@@ -459,6 +458,71 @@ int test_images(const Args &args,
   return 0;
 }
 
+/*int test_image(const Args &args,
+                const std::unique_ptr<tensorflow::Session> &session) {
+  Tensor input_tensor(
+      tensorflow::DT_FLOAT,
+      tensorflow::TensorShape({args.img_height, args.img_width, 3}));
+
+    Mat src_img = imread(line, IMREAD_COLOR);
+    if (src_img.empty()) {
+      std::cout << std::endl;
+      LOG(ERROR) << "Can not open image: " << line;
+      continue;
+    }
+
+    TimePoint timer3;
+    TimePoint timer4;
+    std::vector<tensorbox::Rect> out;
+    Mat input = Mat::zeros(args.img_height, args.img_width, CV_8UC3);
+    float true_scale = min(args.img_width / float(src_img.cols),
+                           args.img_height / float(src_img.rows));
+    if (true_scale >= 1.0) {
+      true_scale = 1.0;
+    }
+    run_detection(args, true_scale, src_img, session, input_tensor, input,
+                  timer3, timer4, out);
+
+    if (out.size() == 0) {
+      continue;
+    }
+
+    if (img_count > 0) {
+      fout << "," << std::endl;
+    }
+
+    boost::filesystem::path p(line);
+    fout << p.filename() << ":" << std::endl;
+
+    fout << "[" << std::endl;
+    int rect_count = 0;
+    for (const auto &rect : out) {
+      if (rect.confidence_ < args.conf_threshold ||
+          (!eval_class_ids.empty() &&
+           eval_class_ids.find(rect.class_id_) == eval_class_ids.end())) {
+        continue;
+      }
+
+      float x1 = (rect.cx_ - rect.width_ / 2) / (src_img.cols * true_scale);
+      float y1 = (rect.cy_ - rect.height_ / 2) / (src_img.rows * true_scale);
+      float x2 = (rect.cx_ + rect.width_ / 2) / (src_img.cols * true_scale);
+      float y2 = (rect.cy_ + rect.height_ / 2) / (src_img.rows * true_scale);
+
+      if (rect_count > 0) {
+        fout << "," << std::endl;
+      }
+
+      const int id = (id_map.find(rect.class_id_) != id_map.end())
+                         ? id_map[rect.class_id_]
+                         : rect.class_id_;
+      fout << "\t[" << x1 << ", " << y1 << ", " << x2 << ", " << y2 << ", "
+           << id << ", " << rect.confidence_ << "]";
+      rect_count++;
+    }
+
+  return 0;
+}*/
+
 // -------------------------------------------------------------------------
 int main(int argc, char *argv[]) {
   Args args;
@@ -530,4 +594,4 @@ int main(int argc, char *argv[]) {
 
   LOG(ERROR) << "Invalid video_path or eval_list.";
   return -1;
-}*/
+}

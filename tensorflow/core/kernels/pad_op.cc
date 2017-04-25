@@ -22,6 +22,7 @@ limitations under the License.
 #include <memory>
 #include <string>
 #include <utility>
+#include <sstream>
 
 #include "third_party/eigen3/unsupported/Eigen/CXX11/Tensor"
 #include "tensorflow/core/framework/op.h"
@@ -64,10 +65,19 @@ class PadOp : public OpKernel {
     const int fixed_dims =
         (allow_legacy_scalars() && dims == 0 && in1.dim_size(0) == 1) ? 1
                                                                       : dims;
+
+    string fixed_dims_str;
+    stream << fixed_dims;
+    stream >> fixed_dims_str;
+
+    string in1_dim_size_0_str;
+    stream << in1.dim_size(0);
+    stream >> in1_dim_size_0_str;
+
     OP_REQUIRES(
         context, fixed_dims == in1.dim_size(0),
         errors::InvalidArgument(
-            "The first dimension of paddings must be the rank of inputs",
+            "[whn09 fixed_dims = "+fixed_dims_str+", in1.dim_size(0) = "+in1_dim_size_0_str+"] The first dimension of paddings must be the rank of inputs",
             in1.shape().DebugString(), " ", in0.shape().DebugString()));
 
     // Compute the shape of the output tensor, and allocate it.
