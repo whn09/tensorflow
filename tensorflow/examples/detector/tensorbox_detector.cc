@@ -56,7 +56,8 @@ TENSORBOXDETECTOR_METHOD(testImage)(
 JNIEXPORT void JNICALL
 TENSORBOXDETECTOR_METHOD(testImage)(
     JNIEnv* env, jclass clazz, jint input, jint output) {
-        output = input+1;
+        int tmp = input+1;
+        output = &tmp;
     }
 /*
 // -------------------------------------------------------------------------
