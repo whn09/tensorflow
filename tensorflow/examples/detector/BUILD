@@ -54,6 +54,29 @@ cc_binary(
 )
 
 cc_binary(
+    name = "libtensorbox_detector.so",
+    srcs = [
+        "tensorbox_detector.cc",
+        "hungarian.h",
+        "hungarian.cc",
+        "stitch_rects.h",
+        "stitch_rects.cc",
+    ],
+    linkopts = [
+      "-fopenmp",
+      "-lm",
+    ],
+    deps = [
+        "//tensorflow/core:framework_internal",
+        "//tensorflow/core:tensorflow",
+        "@opencv//:opencv",
+        "@boost_archive//:boost",
+        "@boost_archive//:filesystem",
+        "@boost_archive//:property_tree",
+    ],
+)
+
+cc_binary(
     name = "vis",
     srcs = [
         "vis.cc",
