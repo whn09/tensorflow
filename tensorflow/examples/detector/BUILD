@@ -53,6 +53,12 @@ cc_binary(
     ],
 )
 
+load(
+    "//tensorflow:tensorflow.bzl",
+    "tf_copts",
+    "tf_opts_nortti_if_android",
+)
+
 LINKER_SCRIPT = "//tensorflow/contrib/android:jni/version_script.lds"
 
 cc_binary(
