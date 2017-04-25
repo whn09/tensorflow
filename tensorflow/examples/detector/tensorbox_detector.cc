@@ -45,19 +45,18 @@ using TimePoint = std::chrono::high_resolution_clock::time_point;
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL
+JNIEXPORT jint JNICALL
 TENSORBOXDETECTOR_METHOD(testImage)(
-    JNIEnv* env, jclass clazz, jint input, jint output);
+    JNIEnv* env, jclass clazz, jint input);
 
 #ifdef __cplusplus
 }
 #endif
 
-JNIEXPORT void JNICALL
+JNIEXPORT jint JNICALL
 TENSORBOXDETECTOR_METHOD(testImage)(
-    JNIEnv* env, jclass clazz, jint input, jint output) {
-        int tmp = input+1;
-        output = tmp;
+    JNIEnv* env, jclass clazz, jint input) {
+        return input+1;
     }
 /*
 // -------------------------------------------------------------------------
