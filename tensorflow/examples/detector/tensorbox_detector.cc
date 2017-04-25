@@ -46,7 +46,7 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL
-TENSORBOXDETECTOR_METHOD(test_image)(
+TENSORBOXDETECTOR_METHOD(testImage)(
     JNIEnv* env, jclass clazz, jint input, jint output);
 
 #ifdef __cplusplus
@@ -54,7 +54,7 @@ TENSORBOXDETECTOR_METHOD(test_image)(
 #endif
 
 JNIEXPORT void JNICALL
-TENSORBOXDETECTOR_METHOD(test_image)(
+TENSORBOXDETECTOR_METHOD(testImage)(
     JNIEnv* env, jclass clazz, jint input, jint output) {
         output = input+1;
     }
