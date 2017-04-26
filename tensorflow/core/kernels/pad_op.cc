@@ -65,7 +65,7 @@ class PadOp : public OpKernel {
     const int fixed_dims =
         (allow_legacy_scalars() && dims == 0 && in1.dim_size(0) == 1) ? 1
                                                                       : dims;
-
+    stringstream stream;
     string fixed_dims_str;
     stream << fixed_dims;
     stream >> fixed_dims_str;
