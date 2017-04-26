@@ -3921,6 +3921,7 @@ filegroup(
         "cwise_op_add_1.cc",
         "cwise_op_add_2.cc",
 	"cwise_op_ceil.cc", # added by whn09
+	"l2loss_op.cc", # added by whn09
         "cwise_op_div.cc",
         "cwise_op_equal_to_1.cc",
         "cwise_op_equal_to_2.cc",
