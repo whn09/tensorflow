@@ -70,9 +70,10 @@ class PadOp : public OpKernel {
     stream << fixed_dims;
     stream >> fixed_dims_str;
 
+    std::stringstream stream2;
     string in1_dim_size_0_str;
-    stream << in1.dim_size(0);
-    stream >> in1_dim_size_0_str;
+    stream2 << in1.dim_size(0);
+    stream2 >> in1_dim_size_0_str;
 
     OP_REQUIRES(
         context, fixed_dims == in1.dim_size(0),
